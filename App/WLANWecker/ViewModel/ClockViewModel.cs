@@ -35,10 +35,9 @@ namespace WLANWecker.ViewModel
 
         public Alarm selectedItem
         {
-            get => null; // dont ever have something selected, just trigger set if value is set
+            get => null; 
             set
             {
-                // open alarm page
                 ItemWasSelected(value);
             } 
         }
@@ -59,9 +58,6 @@ namespace WLANWecker.ViewModel
 
         public ClockViewModel()
         {
-            // Doesn't work ip is null as the ip setter is accessed only afterwards
-            //if(!string.IsNullOrEmpty(ip)) 
-            //    SearchForClock(ip);
 
             //SaveData = new Command(SaveClock);
             AddAlarm = new Command(AddNewAlarm);
@@ -80,10 +76,8 @@ namespace WLANWecker.ViewModel
 
         private async void ShowSettings(object obj)
         {
-            Console.WriteLine("blablva");
             //await Shell.Current?.GoToAsync(nameof(ClockSettingsView));
             await Shell.Current.GoToAsync($"{nameof(ClockSettingsView)}?ip={ip}&clock={Clock}");
-            Console.WriteLine("blalbalb2");
         }
 
         private void OnTimedEvent(object sender, ElapsedEventArgs e)
@@ -203,7 +197,6 @@ namespace WLANWecker.ViewModel
 
         private async void ItemWasSelected(Alarm item)
         {
-            Console.WriteLine("slayy!!");
             OnPropertyChanged(nameof(selectedItem));
             await Shell.Current.GoToAsync($"{nameof(AlarmView)}?alarm={item.ToBytes()}&ip={ip}");
         }

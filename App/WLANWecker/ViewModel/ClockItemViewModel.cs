@@ -28,16 +28,16 @@ namespace WLANWecker.ViewModel
 
         private string baseDomain = "http://wifi-clock-";
         private string endDomain = ".local/";
-        private string staticIP = "192.168.1.184"; // Static IP for AP Mode
+        private string staticIP = "192.168.1.184"; 
 
         private ClockItem selectedItem;
         public ClockItem SelectedItem
         {
-            get { return null; } // Always return null, selecting should only trigger the clock search code
+            get { return null; } 
             set
             {
                 ItemWasSelected(value);
-                selectedItem = value; // backup if you'd still like to access it somehow
+                selectedItem = value; 
             }
         }
 

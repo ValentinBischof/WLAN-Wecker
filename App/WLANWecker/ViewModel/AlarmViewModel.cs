@@ -66,9 +66,6 @@ namespace WLANWecker.ViewModel
         {
             if (name.Equals(nameof(Alarm.repeat)))
                 OnPropertyChanged(nameof(Alarm));
-
-            Console.WriteLine("Hii!!!");
-            Console.WriteLine(name);
         }
 
         private async void SaveAlarm()
