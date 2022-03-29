@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:WLANWecker.ViewModel"
+    x:Class="WLANWecker.View.ClockSettingsView"
+    Shell.NavBarIsVisible="True">
+
+
+        <Shell.TitleView>
+            <StackLayout>
+                <Label Text="Einstellungen" FontSize="30" HeightRequest="200" TextColor="White" VerticalOptions="Center" Margin="-3,5,0,10"/>
+
+            </StackLayout>
+    <!-- rest of my TitleView irrelevant in this question-->
+    </Shell.TitleView>
+
+    <StackLayout>
+
+        <Frame BackgroundColor="LightGray" Margin="5,5,5,0"
+        CornerRadius="10">
+            <StackLayout>
+                <Label Text="Netzwerk"
+                       FontSize="20"
+                       FontAttributes="Bold"/>
+                <Editor Placeholder="Netzwerk Name"
+                        Text="{Binding ssid}"/>
+                <Editor Placeholder="Netzwerk Passwort"
+                        Text="{Binding pw}"/>
+                <Button BackgroundColor="LightGray"
+                        Text="Speichern"
+                        Command="{Binding SaveWiFiCommand}"
+                        IsVisible="{Binding saveButton}"/>
+                <ActivityIndicator IsRunning="{Binding indicator}" IsVisible="{Binding indicator}"/>
+                <Label Text="Gebe dein WLAN Netzwerk mit dem der Wecker in Verbindung steht."/>
+            </StackLayout>
+        </Frame>
+
+        <Frame BackgroundColor="LightGray" Margin="5,5,5,0"
+               CornerRadius="10">
+            <StackLayout>
+                <Label Text="Alarm Beschleunigung"
+                       FontSize="20"
+                       FontAttributes="Bold"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="0.0"/>
+                    <Slider WidthRequest="280"/>
+                    <Label Text="10.0"/>
+                </StackLayout>
+            <Label Text="Um wie viel muss der Wecker beschleunigt werden muss, um den Alarm deaktivieren (g)"/>
+            </StackLayout>
+        </Frame>
+        <Frame BackgroundColor="LightGray" Margin="5,5,5,0"
+        CornerRadius="10">
+            <StackLayout>
+                <Label Text="Wake-Up Beschleunigung"
+                       FontSize="20"
+                       FontAttributes="Bold"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="0.0"/>
+                    <Slider WidthRequest="280"/>
+                    <Label Text="10.0"/>
+                </StackLayout>
+            <Label Text="Um wie viel muss der Wecker beschleunigt werden muss, um den Wecker aufzuwecken(g)"/>
+            </StackLayout>
+        </Frame>
+
+        <Frame BackgroundColor="LightGray" Margin="5,5,5,0"
+        CornerRadius="10">
+            <StackLayout>
+                <Label Text="Klingelton"
+                       FontSize="20"
+                       FontAttributes="Bold"/>
+                <StackLayout Orientation="Horizontal">
+                   <Picker Title="Klingelton 1" />
+                </StackLayout>
+            <Label Text="Verschieden Klingeltöne. Aktuell verfügbar ist einer."/>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</ContentPage>

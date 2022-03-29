@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:customrenderer="clr-namespace:WLANWecker.CustomRenderer"
+    x:Class="WLANWecker.View.AlarmView">
+
+    <Shell.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <customrenderer:CustomEntry Text="{Binding Alarm.displayName}"
+                                        Placeholder="Alarm Name"
+                                        FontSize="20"
+                                        VerticalTextAlignment="Center"
+                                        FontAttributes="Bold"
+                                        TextColor="White"
+                                        BackgroundColor="Transparent"
+                                        WidthRequest="200"/>
+            <Button Text="Speichern"
+                    BackgroundColor="#2196F3"
+                    TextColor="White"
+                    CornerRadius="10"
+                    Command="{Binding SaveData}"/>
+        </StackLayout>
+        
+    <!-- rest of my TitleView irrelevant in this question-->
+    </Shell.TitleView>
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding BackCommand}"/>
+    </Shell.BackButtonBehavior>
+
+    <StackLayout>
+        <Frame BackgroundColor="LightGray" CornerRadius="10" Margin="5,5,5,0">
+            <StackLayout>
+                <Label Text="Alarm Uhrzeit" HorizontalOptions="Center" FontAttributes="Bold" Margin="0,-15,0,0"/>
+                <TimePicker Format="HH:mm" HorizontalOptions="Center" Margin="0,0,0,-10" FontSize="30" Time="{Binding Alarm.timeSpanClock}"/>
+            </StackLayout>
+        </Frame>
+
+        <StackLayout Orientation="Horizontal">
+           <Frame BackgroundColor="LightGray" CornerRadius="10" Margin="5,0,0,0" WidthRequest="143">
+                <StackLayout>
+                    <Label Text="Allgemeine" HorizontalOptions="Center" FontAttributes="Bold" Margin="0,-15,0,0"/>
+                    <Label Text="Einstellungen" HorizontalOptions="Center" FontAttributes="Bold" Margin="0,-10,0,0"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Aktiv"
+                                VerticalOptions="Center"
+                                WidthRequest="100"/>
+                        <Switch IsToggled="{Binding Alarm.isEnabled}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Vibrieren"
+                                VerticalOptions="Center"
+                                WidthRequest="100"/>
+                        <Switch IsToggled="{Binding Alarm.vibrate}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Alarm Ton"
+                                VerticalOptions="Center"
+                                WidthRequest="100"/>
+                        <Switch IsToggled="{Binding Alarm.sound}"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Experten Modus"
+                                VerticalOptions="Center"
+                                WidthRequest="100"/>
+                        <Button Margin="-10,-10,-10,-10"
+                                WidthRequest="50"
+                                HeightRequest="30"
+                                BackgroundColor="Transparent"
+                                Text="ⓘ"
+                                FontSize="18"
+                                Command="{Binding ShowWarning}"/>
+                        <Switch IsToggled="{Binding Alarm.sound}"/>
+                    </StackLayout>
+                    <Label Text=""
+                           FontSize="Caption"
+                           FontAttributes="Bold"
+                           />
+                </StackLayout>
+            </Frame>
+            <Frame BackgroundColor="LightGray" CornerRadius="10">
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="0,-10,0,10">
+                        <Label Text="Wiederholen"
+                               VerticalOptions="Center"
+                               WidthRequest="100"
+                               FontAttributes="Bold"/>
+                        <Switch IsToggled="{Binding Alarm.repeat}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="0,-5,0,0">
+                        <Label Text="Montag"
+                               VerticalOptions="Center"
+                               WidthRequest="100"/>
+                        <Switch IsToggled="{Binding Alarm.monday}"
+                                IsEnabled="{Binding Alarm.repeat}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="0,-5,0,0">
+                        <Label Text="Dienstag"
+                               VerticalOptions="Center"
+                               WidthRequest="100"/>
+                        <Switch IsToggled="{Binding Alarm.tuesday}"
+                                IsEnabled="{Binding Alarm.repeat}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="0,-5,0,0">
+                        <Label Text="Mittwoch"
+                               VerticalOptions="Center"
+                               WidthRequest="100"/>
+                        <Switch IsToggled="{Binding Alarm.wednesday}"
+                                IsEnabled="{Binding Alarm.repeat}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="0,-5,0,0">
+                        <Label Text="Donnerstag"
+                               VerticalOptions="Center"
+                               WidthRequest="100"/>
+                        <Switch IsToggled="{Binding Alarm.thursday}"
+                                IsEnabled="{Binding Alarm.repeat}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="0,-5,0,0">
+                        <Label Text="Freitag"
+                               VerticalOptions="Center"
+                               WidthRequest="100"/>
+                        <Switch IsToggled="{Binding Alarm.friday}"
+                                IsEnabled="{Binding Alarm.repeat}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="0,-5,0,0">
+                        <Label Text="Samstag"
+                               VerticalOptions="Center"
+                               WidthRequest="100"/>
+                        <Switch IsToggled="{Binding Alarm.saturday}"
+                                IsEnabled="{Binding Alarm.repeat}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="0,-5,0,-10">
+                        <Label Text="Sonntag"
+                               VerticalOptions="Center"
+                               WidthRequest="100"/>
+                        <Switch IsToggled="{Binding Alarm.sunday}"
+                                IsEnabled="{Binding Alarm.repeat}"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+
+        <Frame BackgroundColor="LightGray" CornerRadius="10" Margin="5,0,5,0">
+            <Button Text="Alarm löschen"
+                    CornerRadius="10"
+                    BackgroundColor="LightGray"
+                    Margin="-20"
+                    FontAttributes="Bold"
+                    TextColor="Red"
+                    Command="{Binding RemoveData}">
+
+            </Button>
+        </Frame>
+
+        
+        
+        
+    </StackLayout>
+</ContentPage>

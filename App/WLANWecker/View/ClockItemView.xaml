@@ -1,0 +1,88 @@
+﻿<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:WLANWecker.ViewModel"
+    x:Class="WLANWecker.View.ClockItemView"
+    Shell.NavBarIsVisible="False">
+
+    <RelativeLayout>
+        <StackLayout VerticalOptions="Start"
+                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}">
+
+             <Frame BackgroundColor="#2196F3" Padding="15" CornerRadius="0">
+                <Label Text="WLAN Wecker" TextColor="White" FontSize="22"/>
+            </Frame>
+
+
+            <Label Text="Wecker in der Nähe deines Gerätes:" FontSize="Title" Padding="20,10,30,10"/>
+
+            <ListView BackgroundColor="Transparent"            
+                      ItemsSource="{Binding ClockItems}"
+                      HasUnevenRows="True"
+                      SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="20,5,0,2.5">
+                                <StackLayout Orientation="Horizontal">
+                                    <Grid WidthRequest="200">
+                                        <StackLayout>
+                                                <Label Text="{Binding displayName}" FontSize="20"/>
+                                                <Label Text="{Binding clockDescription}"
+                                                        Padding="0,-5,0,0"
+                                                        LineBreakMode="TailTruncation"
+                                                        WidthRequest="90"/>
+                                        </StackLayout>
+                                    </Grid>
+                                    <StackLayout>
+                                        <Label VerticalOptions="Center" LineBreakMode="WordWrap" Text="{Binding IpString}"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+        </StackLayout>
+
+        <StackLayout VerticalOptions="Center"
+                          RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.2}"
+                          RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.6}">
+
+            <Label Text="Kein Gerät gefunden"
+                   FontSize="16"
+                   HorizontalTextAlignment="Center"
+                   IsVisible="{Binding noItems}"/>
+
+            <ActivityIndicator IsRunning="{Binding isSearching}" />
+
+            <Label Text="Suche..."
+                   FontSize="16"
+                   HorizontalTextAlignment="Center"
+                   IsVisible="{Binding isSearching}"/>
+
+        </StackLayout>
+
+        <StackLayout VerticalOptions="End"
+                          RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.95}"
+                          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.87}"
+                          RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}">
+
+               <Button WidthRequest="90"
+                       HeightRequest="90"
+                       CornerRadius="45"
+                       VerticalOptions="Center"
+                       HorizontalOptions ="End"
+                       BackgroundColor="#2196F3"
+                       Text="Suche starten"
+                       TextColor="White"
+                       Command="{Binding SearchClocks}"/>
+        </StackLayout>
+
+    </RelativeLayout>
+
+</ContentPage>
